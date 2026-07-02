@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Faculty Dashboard — Agathiya Institute of Medical Sciences &amp; Hospital</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-row">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Agathiya Institute of Medical Sciences and Hospital seal" class="seal">
+      <span class="brand-text">
+        <span class="name">Agathiya Institute of<br>Medical Sciences &amp; Hospital</span>
+        <span class="sub">Agathiya Society for Wellness, Integrity &amp; Nurture</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-sm" id="logoutBtn">Log Out</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="academics.html">Academics</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="dash-shell">
+  <aside class="dash-side">
+    <div class="user-chip">
+      <div class="av" id="userAv">--</div>
+      <div>
+        <div class="uname" id="userName">Loading…</div>
+        <div class="urole">Faculty</div>
+      </div>
+    </div>
+    <nav class="dash-nav">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#courses">Assigned Courses</a>
+      <a href="#attendance">Attendance Management</a>
+      <a href="#marks">Marks Entry</a>
+      <a href="#announce">Post Announcement</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <h1>Welcome, <span id="welcomeName">—</span></h1>
+        <p class="text-slate mt-2" id="welcomeMeta" style="font-size:0.9rem;"></p>
+      </div>
+    </div>
+
+    <div class="kpi-grid" id="overview">
+      <div class="kpi-card">
+        <div class="kpi-label">Courses Assigned</div>
+        <div class="kpi-val" id="kpiCourses">—</div>
+        <div class="kpi-sub">This semester</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Students</div>
+        <div class="kpi-val" id="kpiStudents">—</div>
+        <div class="kpi-sub">Across assigned sections</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Department</div>
+        <div class="kpi-val" id="kpiDept" style="font-size:1.05rem;">—</div>
+        <div class="kpi-sub" id="kpiDesig">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Pending Notices</div>
+        <div class="kpi-val" id="kpiNotices">—</div>
+        <div class="kpi-sub">Posted this month</div>
+      </div>
+    </div>
+
+    <section class="tight" id="courses" style="padding-top:0;">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">This Semester</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Assigned courses</h2>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Code</th><th>Course</th><th>Section</th><th>Students</th></tr></thead>
+        <tbody id="coursesBody"></tbody>
+      </table>
+    </section>
+
+    <section class="tight" id="attendance">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">Quick Action</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Attendance management</h2>
+      </div>
+      <div class="form-card">
+        <div class="grid-2">
+          <div class="field">
+            <label for="attCourse">Select course</label>
+            <select id="attCourse"></select>
+          </div>
+          <div class="field">
+            <label for="attDate">Date</label>
+            <input type="date" id="attDate">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="markAttBtn">Mark Today's Attendance</button>
+        <div class="alert alert-success" id="attSuccess">Attendance recorded for the selected course and date.</div>
+      </div>
+    </section>
+
+    <section class="tight" id="marks">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">Quick Action</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Marks entry</h2>
+      </div>
+      <div class="form-card">
+        <div class="grid-3">
+          <div class="field">
+            <label for="marksCourse">Course</label>
+            <select id="marksCourse"></select>
+          </div>
+          <div class="field">
+            <label for="marksRegNo">Student Register No.</label>
+            <input type="text" id="marksRegNo" placeholder="e.g. 21MBBS104">
+          </div>
+          <div class="field">
+            <label for="marksValue">Internal Marks (/50)</label>
+            <input type="number" id="marksValue" min="0" max="50">
+          </div>
+        </div>
+        <button class="btn btn-primary" id="saveMarksBtn">Save Marks</button>
+        <div class="alert alert-success" id="marksSuccess">Marks saved for the entered student.</div>
+      </div>
+    </section>
+
+    <section class="tight" id="announce">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">Notice Board</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Post announcement</h2>
+      </div>
+      <div class="form-card">
+        <div class="field">
+          <label for="noticeTitle">Title</label>
+          <input type="text" id="noticeTitle" placeholder="e.g. Clinical posting schedule revised for Friday">
+        </div>
+        <div class="field">
+          <label for="noticeCategory">Category</label>
+          <select id="noticeCategory">
+            <option>Circular</option>
+            <option>Exams</option>
+            <option>Events</option>
+            <option>Outreach</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="postNoticeBtn">Post to Notice Board</button>
+        <div class="alert alert-success" id="noticeSuccess">Announcement posted to the public notice board.</div>
+      </div>
+
+      <table class="data-table mt-6">
+        <thead><tr><th>Date</th><th>Title</th><th>Category</th></tr></thead>
+        <tbody id="noticesBody"></tbody>
+      </table>
+    </section>
+  </main>
+</div>
+
+<script src="js/data.js"></script>
+<script>window.PCET = PCET;</script>
+<script src="js/ui.js"></script>
+<script>
+  const user = PCET.requireAuth("faculty");
+
+  function renderNotices() {
+    const db = PCET.getDB();
+    const sorted = [...db.notices].sort((a,b) => new Date(b.date) - new Date(a.date));
+    document.getElementById("noticesBody").innerHTML = sorted.map(n => `
+      <tr>
+        <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--slate);">${n.date}</td>
+        <td>${n.title}</td>
+        <td><span class="badge badge-brass">${n.category}</span></td>
+      </tr>
+    `).join("");
+    document.getElementById("kpiNotices").textContent = db.notices.filter(n => n.date.startsWith("2026-06")).length;
+  }
+
+  if (user) {
+    const initials = user.name.split(" ").map(p => p[0]).join("").slice(0,2).toUpperCase();
+    document.getElementById("userAv").textContent = initials;
+    document.getElementById("userName").textContent = user.name;
+    document.getElementById("welcomeName").textContent = user.name;
+    document.getElementById("welcomeMeta").textContent = `${user.facultyId} · ${user.department}`;
+
+    const db = PCET.getDB();
+    document.getElementById("kpiCourses").textContent = db.assignedCourses.length;
+    document.getElementById("kpiStudents").textContent = db.assignedCourses.reduce((s,c) => s + c.students, 0);
+    document.getElementById("kpiDept").textContent = user.department.replace("School of ", "");
+    document.getElementById("kpiDesig").textContent = user.designation;
+
+    document.getElementById("coursesBody").innerHTML = db.assignedCourses.map(c => `
+      <tr>
+        <td><span class="badge badge-navy">${c.code}</span></td>
+        <td>${c.course}</td>
+        <td>${c.section}</td>
+        <td>${c.students}</td>
+      </tr>
+    `).join("");
+
+    const courseOptions = db.assignedCourses.map(c => `<option value="${c.code}">${c.course} (${c.section})</option>`).join("");
+    document.getElementById("attCourse").innerHTML = courseOptions;
+    document.getElementById("marksCourse").innerHTML = courseOptions;
+    document.getElementById("attDate").value = new Date().toISOString().split("T")[0];
+
+    renderNotices();
+  }
+
+  document.getElementById("markAttBtn").addEventListener("click", () => {
+    document.getElementById("attSuccess").classList.add("show");
+    setTimeout(() => document.getElementById("attSuccess").classList.remove("show"), 3000);
+  });
+
+  document.getElementById("saveMarksBtn").addEventListener("click", () => {
+    const regNo = document.getElementById("marksRegNo").value.trim();
+    const marks = document.getElementById("marksValue").value;
+    if (!regNo || marks === "") {
+      alert("Please enter a register number and marks value.");
+      return;
+    }
+    document.getElementById("marksSuccess").classList.add("show");
+    document.getElementById("marksRegNo").value = "";
+    document.getElementById("marksValue").value = "";
+    setTimeout(() => document.getElementById("marksSuccess").classList.remove("show"), 3000);
+  });
+
+  document.getElementById("postNoticeBtn").addEventListener("click", () => {
+    const title = document.getElementById("noticeTitle").value.trim();
+    const category = document.getElementById("noticeCategory").value;
+    if (!title) {
+      alert("Please enter a notice title.");
+      return;
+    }
+    const db = PCET.getDB();
+    db.notices.unshift({
+      id: Date.now(),
+      title,
+      category,
+      date: new Date().toISOString().split("T")[0]
+    });
+    PCET.saveDB(db);
+    document.getElementById("noticeTitle").value = "";
+    document.getElementById("noticeSuccess").classList.add("show");
+    renderNotices();
+    setTimeout(() => document.getElementById("noticeSuccess").classList.remove("show"), 3000);
+  });
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    PCET.logout();
+    window.location.href = "index.html";
+  });
+</script>
+</body>
+</html>

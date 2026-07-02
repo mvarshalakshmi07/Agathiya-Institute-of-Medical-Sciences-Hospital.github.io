@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard — Agathiya Institute of Medical Sciences &amp; Hospital</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-row">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Agathiya Institute of Medical Sciences and Hospital seal" class="seal">
+      <span class="brand-text">
+        <span class="name">Agathiya Institute of<br>Medical Sciences &amp; Hospital</span>
+        <span class="sub">Agathiya Society for Wellness, Integrity &amp; Nurture</span>
+      </span>
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="admissions.html">Admissions</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-sm" id="logoutBtn">Log Out</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <nav class="mobile-nav" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="academics.html">Academics</a>
+    <a href="admissions.html">Admissions</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="dash-shell">
+  <aside class="dash-side">
+    <div class="user-chip">
+      <div class="av" id="userAv">--</div>
+      <div>
+        <div class="uname" id="userName">Loading…</div>
+        <div class="urole">Student</div>
+      </div>
+    </div>
+    <nav class="dash-nav">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#attendance">Attendance</a>
+      <a href="#results">Semester Results</a>
+      <a href="#fees">Fee Status</a>
+      <a href="#documents">Hall Ticket &amp; Certificates</a>
+    </nav>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <h1>Welcome back, <span id="welcomeName">—</span></h1>
+        <p class="text-slate mt-2" id="welcomeMeta" style="font-size:0.9rem;"></p>
+      </div>
+    </div>
+
+    <div class="kpi-grid" id="overview">
+      <div class="kpi-card">
+        <div class="kpi-label">Overall Attendance</div>
+        <div class="kpi-val" id="kpiAttendance">—</div>
+        <div class="kpi-sub">Across 5 registered courses</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Current Semester</div>
+        <div class="kpi-val" id="kpiSemester">—</div>
+        <div class="kpi-sub">Academic year 2025–26</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Fee Status</div>
+        <div class="kpi-val" id="kpiFee">—</div>
+        <div class="kpi-sub" id="kpiFeeSub">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Best Internal Score</div>
+        <div class="kpi-val" id="kpiBest">—</div>
+        <div class="kpi-sub" id="kpiBestSub">—</div>
+      </div>
+    </div>
+
+    <section class="tight" id="attendance" style="padding-top:0;">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">Course-wise</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Attendance</h2>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Code</th><th>Course</th><th>Attendance</th></tr></thead>
+        <tbody id="attendanceBody"></tbody>
+      </table>
+    </section>
+
+    <section class="tight" id="results">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">CIA Marks</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Semester results</h2>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Code</th><th>Course</th><th>Internal Marks</th><th>Grade</th></tr></thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </section>
+
+    <section class="tight" id="fees">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">Account</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Fee status</h2>
+      </div>
+      <div class="grid-3">
+        <div class="kpi-card"><div class="kpi-label">Total Payable</div><div class="kpi-val" id="feeTotal">—</div></div>
+        <div class="kpi-card"><div class="kpi-label">Paid</div><div class="kpi-val" id="feePaid">—</div></div>
+        <div class="kpi-card"><div class="kpi-label">Due</div><div class="kpi-val" id="feeDue">—</div></div>
+      </div>
+    </section>
+
+    <section class="tight" id="documents">
+      <div class="section-head" style="margin-bottom:var(--sp-6);">
+        <span class="eyebrow">Downloads</span>
+        <h2 style="font-size:1.3rem; border:none; padding:0;">Hall ticket &amp; certificates</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="font-size:1rem;">Hall Ticket</h3>
+          <p class="text-slate mt-2" style="font-size:0.85rem;">End semester examination, May 2026</p>
+          <button class="btn btn-outline-navy btn-sm mt-4" id="downloadHall">Download</button>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1rem;">Bonafide Certificate</h3>
+          <p class="text-slate mt-2" style="font-size:0.85rem;">For scholarship / bank loan purposes</p>
+          <button class="btn btn-outline-navy btn-sm mt-4" id="downloadBonafide">Request</button>
+        </div>
+        <div class="card">
+          <h3 style="font-size:1rem;">Course Registration</h3>
+          <p class="text-slate mt-2" style="font-size:0.85rem;">Register electives for next semester</p>
+          <button class="btn btn-outline-navy btn-sm mt-4" id="registerCourse">Register</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="js/data.js"></script>
+<script>window.PCET = PCET;</script>
+<script src="js/ui.js"></script>
+<script>
+  const user = PCET.requireAuth("student");
+
+  if (user) {
+    const initials = user.name.split(" ").map(p => p[0]).join("").slice(0,2).toUpperCase();
+    document.getElementById("userAv").textContent = initials;
+    document.getElementById("userName").textContent = user.name;
+    document.getElementById("welcomeName").textContent = user.name.split(" ")[0];
+    document.getElementById("welcomeMeta").textContent = `${user.regNo} · ${user.department} · ${user.year}`;
+
+    const db = PCET.getDB();
+
+    // Attendance
+    const avg = Math.round(db.attendance.reduce((s, a) => s + a.percent, 0) / db.attendance.length);
+    document.getElementById("kpiAttendance").textContent = avg + "%";
+    document.getElementById("attendanceBody").innerHTML = db.attendance.map(a => `
+      <tr>
+        <td><span class="badge badge-navy">${a.code}</span></td>
+        <td>${a.course}</td>
+        <td>${a.percent}%</td>
+      </tr>
+    `).join("");
+
+    document.getElementById("kpiSemester").textContent = "Sem " + user.semester;
+
+    // Results
+    document.getElementById("resultsBody").innerHTML = db.results.map(r => `
+      <tr>
+        <td><span class="badge badge-navy">${r.code}</span></td>
+        <td>${r.course}</td>
+        <td>${r.internal} / ${r.max}</td>
+        <td><span class="badge badge-forest">${r.grade}</span></td>
+      </tr>
+    `).join("");
+
+    const best = db.results.reduce((a, b) => a.internal > b.internal ? a : b);
+    document.getElementById("kpiBest").textContent = best.internal + "/" + best.max;
+    document.getElementById("kpiBestSub").textContent = best.course;
+
+    // Fees
+    const fee = db.feeStatus;
+    document.getElementById("feeTotal").textContent = "₹" + fee.total.toLocaleString("en-IN");
+    document.getElementById("feePaid").textContent = "₹" + fee.paid.toLocaleString("en-IN");
+    document.getElementById("feeDue").textContent = "₹" + fee.due.toLocaleString("en-IN");
+    document.getElementById("kpiFee").textContent = fee.due === 0 ? "Paid" : "₹" + fee.due.toLocaleString("en-IN") + " due";
+    document.getElementById("kpiFeeSub").textContent = fee.due === 0 ? "Last paid " + fee.lastPaymentDate : "Payment pending";
+  }
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    PCET.logout();
+    window.location.href = "index.html";
+  });
+
+  ["downloadHall", "downloadBonafide", "registerCourse"].forEach(id => {
+    document.getElementById(id).addEventListener("click", () => {
+      alert("This is a prototype dashboard — document generation isn't wired up to a real backend yet.");
+    });
+  });
+</script>
+</body>
+</html>
